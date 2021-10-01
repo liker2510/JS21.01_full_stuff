@@ -9,8 +9,5 @@ console.log(typeof fullPrice);
 console.log(typeof adaptive);
 console.log(screens.length);
 console.log(`Стоимость верстки экранов ${screenPrice} долларов и Стоимость разработки сайта ${fullPrice} долларов`);
-screens = screens.toLowerCase();
-
-
-console.log(screens.split(", "));
+console.log(screens.toLowerCase().split(", "));
 console.log (fullPrice * (rollback/100));
