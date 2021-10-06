@@ -39,8 +39,9 @@ function getFullPrice() {
 fullPrice = getFullPrice();
 
 function getTitle() {
-    return title && title[0].substring(0, 1).toUpperCase() + title.substring(1).toLowerCase();
+    return title.trim().substring(0, 1).toUpperCase() + title.substring(1).toLowerCase();
 }
+console.log(getTitle());
 function getServicePercentPrices() {
     return (fullPrice - Math.ceil(fullPrice * (rollback/100)));
 }
