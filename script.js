@@ -65,17 +65,20 @@ const appData = {
         return appData.fullPrice - Math.ceil(appData.fullPrice * (appData.rollback / 100));
     }, 
     start: function() {
-        
-    }
-
+        this.asking();
+        appData.screenPrice = Number(appData.screenPrice);
+        appData.allServicePrices = appData.getAllServicePrices();
+        appData.fullPrice = appData.getFullPrice();
+        appData.servicePercentPrice = appData.getServicePercentPrices();
+        appData.title = appData.getTitle();
+        appData.logger();
+    },
+    logger: function() {
+        for(let key in appData) {
+            console.log(appData[key]);
+        }
+    },
+    
 }
 
-appData.asking();
-appData.screenPrice = Number(appData.screenPrice);
-appData.allServicePrices = appData.getAllServicePrices();
-appData.fullPrice = appData.getFullPrice();
-appData.servicePercentPrice = appData.getServicePercentPrices();
-appData.title = appData.getTitle();
-
-console.log(appData.fullPrice);
-console.log(appData.servicePercentPrice);
+appData.start();
