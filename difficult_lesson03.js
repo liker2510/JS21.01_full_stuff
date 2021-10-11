@@ -1,57 +1,32 @@
 'use strict';
 
-let lang = prompt('Ввдеите ru или en');
+let lang = prompt('Ввдеите "ru" или "en"');
+let weekRu = "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота,В оскресенье";
+let weekEn = " Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
+
 
 if (lang == 'ru') {
-    console.log(
-        'Понедельник',
-        'Вторник',
-        'Среда',
-        'Четверг',
-        'Пятница',
-        'Суббота',
-        'Воскресенье'
-    );
+    console.log(weekRu);
 } else if (lang == 'en') {
-    console.log(
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday'
-    );
+    console.log(weekEn);
+} else {
+    alert('Вы не ввели "ru" или "en"');
 }
 
 switch (lang) {
     case 'ru':
-        console.log(
-            'Понедельник',
-            'Вторник',
-            'Среда',
-            'Четверг',
-            'Пятница',
-            'Суббота',
-            'Воскресенье'
-        );
+        console.log(weekRu);
         break
     case 'en':
-        console.log(
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday'
-        );
+        console.log(weekEn);
         break
+    default:
+        alert( 'Вы не ввели "ru" или "en"' );
 }
 
 let arr = new Map([
-    ['ru', 'Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье'],
-    ['en', 'Monday Tuesday Wednesday Thursday Friday Saturday Sunday']
+    ['ru', weekRu],
+    ['en', weekEn]
   ]);
 console.log(arr.get(`${lang}`));
 
