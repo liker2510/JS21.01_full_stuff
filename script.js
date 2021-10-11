@@ -89,9 +89,9 @@ const appData = {
         appData.logger();
     },
     logger: function() {
-        // for(let key in appData) {
-            console.log(appData.screenPrice);
-        // }
+        for(let key in appData) {
+            console.log(appData[key]);
+        }
     },
     
 }
