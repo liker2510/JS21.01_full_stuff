@@ -1,4 +1,18 @@
 'use strict';
+const header = document.getElementsByTagName('h1')[0];
+const handlerBtn = document.getElementsByClassName('handler_btn');
+const screenBtn = document.querySelector('.screen-btn');
+const otherItemsPercent = document.querySelectorAll('.other-items.percent');
+const otherItemsNumber  = document.querySelectorAll('.other-items.number');
+const rangeValue = document.querySelector('div.rollback > div.main-controls__range > .range-value');
+const inputType = document.querySelector("div.rollback input[type=range]");
+const layoutCost = document.getElementsByClassName('total-input')[0];
+const numberOfScreens = document.getElementsByClassName('total-input')[1];
+const additionalCostServices = document.getElementsByClassName('total-input')[2];
+const theTotalCost = document.getElementsByClassName('total-input')[3];
+const CostIncludingRollback = document.getElementsByClassName('total-input')[4];
+let screen = document.querySelectorAll('.screen');
+;
 
 const appData = {
     title: '',
@@ -54,6 +68,7 @@ const appData = {
         appData.screens.reduce(function(a, b) {
             return appData.screenPrice = +a.price + +b.price;
           });
+          
 
         for (let key in appData.services) {
             appData.allServicePrices += appData.services[key];
@@ -89,9 +104,10 @@ const appData = {
         appData.logger();
     },
     logger: function() {
-        for(let key in appData) {
-            console.log(appData[key]);
-        }
+        // for(let key in appData) {
+        //     console.log(appData[key]);
+        // }
+        console.log(appData.screenPrice);
     },
     
 }
