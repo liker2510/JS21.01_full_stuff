@@ -11,12 +11,15 @@ h2[2].innerHTML = '<a href="https://github.com/azat-io/you-dont-know-js-ru/blob/
 const adv = document.querySelector('.adv');
 adv.remove();
 const elem = document.querySelectorAll('.book > ul > li');
+console.log(elem[44]);
+console.log(elem[41]);
+elem[16].before(elem[8]);
 elem[9].after(elem[12]);
 elem[12].after(elem[14]);
 elem[38].before(elem[45]);
 elem[38].before(elem[39]);
 elem[38].before(elem[40]);
-elem[46].before(elem[41]);
+elem[44].before(elem[41]);
 const newElement = document.createElement('li')
 newElement.textContent = 'Глава 8: За пределами ES6';
 elem[55].append(newElement);
