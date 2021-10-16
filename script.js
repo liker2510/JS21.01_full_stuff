@@ -34,18 +34,21 @@ const appData = {
             appData.screens.push({ id: i, name: name, price: price });
         }
 
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 2 ; i++) {
             let name;
             do {
-                name = prompt('Какой дополнительный тип услуги нужен?'); 
+               name = prompt('Какой дополнительный тип услуги нужен?'); 
             } while(appData.isNumber(name))
             let price = 0;
-        
             do {
                 price = prompt('Сколько это будет стоить?');
             } while(!appData.isNumber(price))
-                
+            
+            if (i > 0 && appData.services[i] === appData.services[i-1]) {
+                name = name + i;
+            }
             appData.services[name] = +price;
+            console.log(appData.services);
         }
         
         appData.adaptive = confirm('Нужен ли адаптив на сайте?');
