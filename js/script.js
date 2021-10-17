@@ -17,13 +17,12 @@ const additionalCostServices = document.getElementsByClassName('total-input')[2]
 const theTotalCost = document.getElementsByClassName('total-input')[3];
 const CostIncludingRollback = document.getElementsByClassName('total-input')[4];
 let screens = document.querySelectorAll('.screen');
-const inputV = document.querySelector('div.main-controls__input > input');
+const select = document.querySelectorAll('select');
+const input = document.querySelectorAll('#input');
 
-const getInput = function(event) {
-    appData.inpValue = event.target.value;
-    console.log(appData.inpValue);
-}
-inputV.addEventListener('input', getInput);
+const allInputs = [...select, ...input ];
+
+console.log(allInputs);
 
 const appData = {
     title: '',
@@ -38,12 +37,24 @@ const appData = {
     servicesPercent: {},
     servicesNumber: {},
     numCount: 0,
-    inpValue: '',
+    isError: false,
+    checkInputs() {
+
+        allInputs.forEach(input => {
+            if(input.value === '') {
+                appData.isError = true;
+            }
+        })
+
+        if(!appData.isError) {
+            appData.start();
+        }
+    },
     isNumber: function (num) {
         return !isNaN(parseFloat(num)) && isFinite(num);
     },
-    start: function() {
 
+    start: function() {
         appData.addScreens();
         appData.addServices();
         appData.addPrices();
@@ -61,10 +72,11 @@ const appData = {
     init: function() {
         appData.addTitle()
         appData.addSlider();
-        if (appData.inpValue !== '') {
-            startBtn.addEventListener('click', appData.start);
-        }
-
+        startBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            appData.isError = false;
+            appData.checkInputs();
+        });
         plusBtn.addEventListener('click', appData.addScreenBlock);
     },
     addTitle: function() {
