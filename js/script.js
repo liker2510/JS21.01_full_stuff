@@ -17,10 +17,10 @@ const additionalCostServices = document.getElementsByClassName('total-input')[2]
 const theTotalCost = document.getElementsByClassName('total-input')[3];
 const CostIncludingRollback = document.getElementsByClassName('total-input')[4];
 let screens = document.querySelectorAll('.screen');
-const select = document.querySelectorAll('.select');
-const input = document.querySelectorAll('.input');
+let select = document.querySelectorAll('.select');
+let input = document.querySelectorAll('.input');
 
-const allInputs = [...select, ...input ];
+const allInputs = [...select, ...input];
 
 console.log(allInputs);
 
@@ -39,7 +39,9 @@ const appData = {
     numCount: 0,
     isError: false,
     checkInputs: function() {
-
+        let select = document.querySelectorAll('.select');
+        let input = document.querySelectorAll('.input');
+        const allInputs = [...select, ...input];
         allInputs.forEach(input => {
             if(input.value === '') {
                 appData.isError = true;
@@ -78,6 +80,7 @@ const appData = {
             appData.checkInputs();
         });
         plusBtn.addEventListener('click', appData.addScreenBlock);
+        
     },
     addTitle: function() {
         document.title = title.textContent;
@@ -102,10 +105,8 @@ const appData = {
         const getRollbackValue = function(event) {
             rangeValue.textContent = event.target.value + '%';
             appData.rollback = +event.target.value;
-            console.log(appData.rollback);
             appData.servicePercentPrice = appData.fullPrice - Math.ceil(appData.fullPrice * (appData.rollback / 100));
             CostIncludingRollback.value = appData.servicePercentPrice;
-
         }
         inputType.addEventListener('input', getRollbackValue);
         inputType.addEventListener('change', getRollbackValue);      
