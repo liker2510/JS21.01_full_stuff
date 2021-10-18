@@ -17,8 +17,8 @@ const additionalCostServices = document.getElementsByClassName('total-input')[2]
 const theTotalCost = document.getElementsByClassName('total-input')[3];
 const CostIncludingRollback = document.getElementsByClassName('total-input')[4];
 let screens = document.querySelectorAll('.screen');
-const select = document.querySelectorAll('select');
-const input = document.querySelectorAll('#input');
+const select = document.querySelectorAll('.select');
+const input = document.querySelectorAll('.input');
 
 const allInputs = [...select, ...input ];
 
@@ -38,7 +38,7 @@ const appData = {
     servicesNumber: {},
     numCount: 0,
     isError: false,
-    checkInputs() {
+    checkInputs: function() {
 
         allInputs.forEach(input => {
             if(input.value === '') {
