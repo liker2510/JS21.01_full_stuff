@@ -102,9 +102,14 @@ const appData = {
         const getRollbackValue = function(event) {
             rangeValue.textContent = event.target.value + '%';
             appData.rollback = +event.target.value;
+            console.log(appData.rollback);
+            appData.servicePercentPrice = appData.fullPrice - Math.ceil(appData.fullPrice * (appData.rollback / 100));
+            CostIncludingRollback.value = appData.servicePercentPrice;
+
         }
         inputType.addEventListener('input', getRollbackValue);
         inputType.addEventListener('change', getRollbackValue);      
+        
     },
     addServices: function() {
         otherItemsPercent.forEach(function(item) {
