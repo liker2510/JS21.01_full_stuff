@@ -66,6 +66,7 @@ let appData = {
         this.showResult();
         startBtn.style.display = 'none';
         resetBtn.style.display = 'block';
+        inputType.setAttribute("disabled", "disabled");
         allInputs.forEach( (index,) => {
             index.setAttribute("disabled", "disabled");
         })
@@ -105,14 +106,22 @@ let appData = {
     reset: function() {
         resetBtn.addEventListener('click', (event) => {
             event.preventDefault();
+            appData.fullPrice = 0;
+            appData.screenPrice = 0;
+            appData.servicePricesPercent = 0;
+            appData.servicePricesNumber = 0;
+            appData.servicePercentPrice = 0;
+            appData.numCount = 0;
+            appData.screens = [];
             allInputs.forEach( (index) => {
-                index.removeAttribute('checked');
+                index.value = '';
                 index.removeAttribute("disabled", "disabled");
             })
             otherItemsPercent.forEach((item) => {
                 const check = item.querySelectorAll('input[type=checkbox]');
                 check.forEach( (index) => {
-                    index.removeAttribute('checked');
+                    index.value = '';
+                    index.checked = false;
                     index.removeAttribute("disabled", "disabled");
                 })
             })
@@ -120,46 +129,12 @@ let appData = {
                 const check = item.querySelectorAll('input[type=checkbox]');
                 check.forEach( (index,) => {
                     index.value = '';
+                    index.checked = false;
                     index.removeAttribute("disabled", "disabled");
                 })
             })
-            appData = {
-                title: '',
-                screens: [],
-                screenPrice: 0,
-                adaptive: true,
-                rollback: 0,
-                servicePricesPercent: 0,
-                servicePricesNumber: 0,
-                fullPrice: 0,
-                servicePercentPrice: 0,
-                servicesPercent: {},
-                servicesNumber: {},
-                numCount: 0,
-                isError: false,
-                showResult: function() {
-                    layoutCost.value = this.screenPrice;
-                    additionalCostServices.value = this.servicePricesPercent + this.servicePricesNumber;
-                    theTotalCost.value = this.fullPrice;
-                    сostIncludingRollback.value = this.servicePercentPrice;
-                    numberOfScreens.value = this.numCount;
-                },
-                checkInputs: function() {
-                    let select = document.querySelectorAll('.select');
-                    let input = document.querySelectorAll('.input');
-                    const allInputs = [...select, ...input];
-                    allInputs.forEach(input => {
-                        if(input.value === '') {
-                            this.isError = true;
-                        }
-                    })
-            
-                    if(!this.isError) {
-                        this.start();
-                        this.isError = false;
-                    }
-                },
-            }
+            inputType.removeAttribute("disabled", "disabled");
+
             appData.showResult();
             console.log(appData);
             resetBtn.style.display = 'none'
