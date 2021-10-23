@@ -138,14 +138,33 @@ let appData = {
             appData.servicePercentPrice = 0;
             appData.numCount = 0;
             appData.screens = [];
+
             let select = document.querySelectorAll('.select');
             let input = document.querySelectorAll('.input');
+            const allInputs = [...select];
+            allInputs.forEach((index) => {
+                index.value = '';
+                index.removeAttribute("disabled");
+                for (let i = 1; i < allInputs.length; i++) {
+                    allInputs[i].parentNode.parentElement.remove();
+                  }
+            })
+            const allInput = [...input];
+            console.log(allInput);
+            allInput.forEach((index) => {
+                index.value = '';
+                index.removeAttribute("disabled");
+                for (let i = 1; i < allInput.length; i++) {
+                    allInputs[i].parentNode.parentElement.remove();
+                  }
+            })
+
             otherItemsPercent.forEach((item) => {
                 const check = item.querySelectorAll('input[type=checkbox]');
                 check.forEach((index) => {
                     index.value = '';
                     index.checked = false;
-                    index.removeAttribute("disabled", "disabled");
+                    index.removeAttribute("disabled");
                 })
             })
             otherItemsNumber.forEach((item) => {
@@ -153,37 +172,17 @@ let appData = {
                 check.forEach((index,) => {
                     index.value = '';
                     index.checked = false;
-                    index.removeAttribute("disabled", "disabled");
+                    index.removeAttribute("disabled");
                 })
             })
-            plusBtn.removeAttribute("disabled", "disabled");
+
+            plusBtn.removeAttribute("disabled");
             inputType.value = 0;
             rangeValue.textContent = inputType.value + '%';
             appData.showResult();
-
+            
             resetBtn.style.display = 'none'
             startBtn.style.display = 'block'
-
-            const allInputs = [...select];
-            console.log(allInputs);
-            allInputs.forEach((index) => {
-                index.value = '';
-                index.removeAttribute("disabled", "disabled");
-                for (let i = 1; i < allInputs.length; i++) {
-                    allInputs[i].remove()
-                  }
-                // index.parentNode.removeChild(index);
-            })
-            const allInput = [...input];
-            console.log(allInput);
-            allInput.forEach((index) => {
-                index.value = '';
-                index.removeAttribute("disabled", "disabled");
-                for (let i = 1; i < allInput.length; i++) {
-                    allInput[i].remove()
-                  }
-                // index.parentNode.removeChild(index);
-            })
         }) 
     },
     addTitle: function () {
