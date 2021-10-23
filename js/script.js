@@ -43,7 +43,7 @@ cmsOpen.addEventListener('click', () => {
 })
 
 const allInputs = [...select, ...input];
-console.log(allInputs);
+
 
 let appData = {
     title: '',
@@ -138,7 +138,7 @@ let appData = {
             appData.servicePercentPrice = 0;
             appData.numCount = 0;
             appData.screens = [];
-
+            
             let select = document.querySelectorAll('.select');
             let input = document.querySelectorAll('.input');
             const allInputs = [...select];
@@ -150,12 +150,11 @@ let appData = {
                   }
             })
             const allInput = [...input];
-            console.log(allInput);
             allInput.forEach((index) => {
                 index.value = '';
                 index.removeAttribute("disabled");
                 for (let i = 1; i < allInput.length; i++) {
-                    allInputs[i].parentNode.parentElement.remove();
+                    allInput[i].parentNode.parentElement.remove();
                   }
             })
 
@@ -176,11 +175,27 @@ let appData = {
                 })
             })
 
-            plusBtn.removeAttribute("disabled");
             inputType.value = 0;
             rangeValue.textContent = inputType.value + '%';
             appData.showResult();
-            
+
+            screens = document.querySelectorAll('.screen');
+            screens.forEach((screen, index) => {
+                const select = screen.querySelector('select');
+                const input = screen.querySelector('input');
+                const selectName = select.options[select.selectedIndex].textContent;
+    
+                this.screens.push({
+                    id: index,
+                    name: selectName,
+                    price: +select.value * +input.value,
+                    count: +input.value,
+                })
+            })
+
+            plusBtn.removeAttribute("disabled");
+            plusBtn.addEventListener('click', appData.addScreenBlock);
+
             resetBtn.style.display = 'none'
             startBtn.style.display = 'block'
         }) 
